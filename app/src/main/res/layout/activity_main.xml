@@ -1136,6 +1136,13 @@ frame members, and has no damage in columns."
             />
 
 
+        <Button
+            android:id="@+id/postdataBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:text="SUBMIT"
+            android:layout_gravity="center" />
 
 
 

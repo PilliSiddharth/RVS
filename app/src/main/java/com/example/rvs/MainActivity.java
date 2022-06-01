@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -78,7 +79,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
     CheckBox site1, site2, site3, site4_yellow;
     CheckBox soil1, soil2, soil3, soil4;
     CheckBox struc1, struc2, struc3, struc4, struc5, struc6, struc7, struc8, struc9, struc10, struc11_yellow, struc12_yellow, struc13_yellow;
-
+    ArrayList<String> red_arr = new ArrayList<>();
+    ArrayList<String> yellow_arr = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -468,11 +470,121 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
             }
         });
 
+        site1 = (CheckBox) findViewById(R.id.sitting1);
+        site2 = (CheckBox) findViewById(R.id.sitting2);
+        site3 = (CheckBox) findViewById(R.id.sitting3);
+        site4_yellow = (CheckBox) findViewById(R.id.sitting4_yellow);
+        soil1 = (CheckBox) findViewById(R.id.soil1);
+        soil2 = (CheckBox) findViewById(R.id.soil2);
+        soil3 = (CheckBox) findViewById(R.id.soil3);
+        soil4 = (CheckBox) findViewById(R.id.soil4);
+        struc1 = (CheckBox) findViewById(R.id.struc_aspects1);
+        struc2 = (CheckBox) findViewById(R.id.struc_aspects2);
+        struc3 = (CheckBox) findViewById(R.id.struc_aspects3);
+        struc4 = (CheckBox) findViewById(R.id.struc_aspects4);
+        struc5 = (CheckBox) findViewById(R.id.struc_aspects5);
+        struc6 = (CheckBox) findViewById(R.id.struc_aspects6);
+        struc7 = (CheckBox) findViewById(R.id.struc_aspects7);
+        struc8 = (CheckBox) findViewById(R.id.struc_aspects8);
+        struc9 = (CheckBox) findViewById(R.id.struc_aspects9);
+        struc10 = (CheckBox) findViewById(R.id.struc_aspects10);
+        struc11_yellow = (CheckBox) findViewById(R.id.struc_aspects11_yellow);
+        struc12_yellow = (CheckBox) findViewById(R.id.struc_aspects12_yellow);
+        struc13_yellow = (CheckBox) findViewById(R.id.struc_aspects13_yellow);
+        Button button = (Button) findViewById(R.id.postdataBtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                AlertDialog.Builder errbuilder = new AlertDialog.Builder(MainActivity.this);
+                try {
+                    errbuilder.setTitle("Required Fields")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setCancelable(false)
+                            .setMessage("Make sure to Fill all the required Fields.")
+                            .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+
+
+                    if (site1.isChecked()) {
+                        red_arr.add(site1.getText().toString());
+                    }
+                    if (site2.isChecked()) {
+                        red_arr.add(site2.getText().toString());
+                    }
+                    if (site3.isChecked()) {
+                        red_arr.add(site3.getText().toString());
+                    }
+                    if (site4_yellow.isChecked()) {
+                        yellow_arr.add(site4_yellow.getText().toString());
+                    }
+                    if (soil1.isChecked()) {
+                        red_arr.add(soil1.getText().toString());
+                    }
+                    if (soil2.isChecked()) {
+                        red_arr.add(soil2.getText().toString());
+                    }
+                    if (soil3.isChecked()) {
+                        red_arr.add(soil3.getText().toString());
+                    }
+                    if (soil4.isChecked()) {
+                        red_arr.add(soil4.getText().toString());
+                    }
+                    if (struc1.isChecked()) {
+                        red_arr.add(struc1.getText().toString());
+                    }
+                    if (struc2.isChecked()) {
+                        red_arr.add(struc2.getText().toString());
+                    }
+                    if (struc3.isChecked()) {
+                        red_arr.add(struc3.getText().toString());
+                    }
+                    if (struc4.isChecked()) {
+                        red_arr.add(struc4.getText().toString());
+                    }
+                    if (struc5.isChecked()) {
+                        red_arr.add(struc5.getText().toString());
+                    }
+                    if (struc6.isChecked()) {
+                        red_arr.add(struc6.getText().toString());
+                    }
+                    if (struc7.isChecked()) {
+                        red_arr.add(struc7.getText().toString());
+                    }
+                    if (struc8.isChecked()) {
+                        red_arr.add(struc8.getText().toString());
+                    }
+                    if (struc9.isChecked()) {
+                        red_arr.add(struc9.getText().toString());
+                    }
+                    if (struc10.isChecked()) {
+                        red_arr.add(struc10.getText().toString());
+                    }
+                    if (struc11_yellow.isChecked()) {
+                        yellow_arr.add(struc11_yellow.getText().toString());
+                    }
+                    if (struc12_yellow.isChecked()) {
+                        yellow_arr.add(struc12_yellow.getText().toString());
+                    }
+                    if (struc13_yellow.isChecked()) {
+                        yellow_arr.add(struc13_yellow.getText().toString());
+                    }
+                    System.out.println(yellow_arr);
+                    System.out.println(red_arr);
+                }
+                    catch (Exception e) {
+                        AlertDialog dialog = errbuilder.create();
+                        dialog.show();
+                    }
+                    yellow_arr.clear();
+                    red_arr.clear();
+                }
+});
     }
     private void updateLabelDate() {
         String myFormat = "MM/dd/yy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         datepicker.setText(dateFormat.format(myCalendar.getTime()));
     }
-
 }
