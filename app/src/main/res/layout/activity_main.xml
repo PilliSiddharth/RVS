@@ -69,9 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:inputType="textPersonName"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edit_text_border"
-                android:inputType="textEmailAddress"
                 android:drawableLeft="@drawable/ic_baseline_person_24"
                 android:drawablePadding="20dp"
                 android:paddingLeft="8dp"
@@ -101,6 +101,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:inputType="date"
                 android:background="@drawable/edit_text_border"
                 android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
                 android:drawablePadding="20dp"
@@ -108,8 +109,7 @@
                 android:paddingRight="12dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
-                android:hint="Enter Inspection Date"
-                android:inputType="none"
+                android:hint="Enter Date"
                 android:cursorVisible="false"
                 android:focusable="false"
                 />
@@ -132,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
+                android:inputType="time"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_border"
                 android:drawableLeft="@drawable/ic_baseline_access_time_24"
@@ -140,8 +141,7 @@
                 android:paddingRight="12dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
-                android:hint="Enter Inspection Time"
-                android:inputType="none"
+                android:hint="Enter Time"
                 android:cursorVisible="false"
                 android:focusable="false"
                 />
@@ -190,7 +190,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_border"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:drawableLeft="@drawable/ic_baseline_apartment_24"
                 android:drawablePadding="20dp"
                 android:paddingLeft="8dp"
@@ -277,6 +277,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:inputType="textPersonName"
                 android:background="@drawable/edit_text_border"
                 android:drawableLeft="@drawable/ic_baseline_location_city_24"
                 android:drawablePadding="20dp"
@@ -305,6 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
+                android:inputType="textPersonName"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_border"
                 android:drawableLeft="@drawable/ic_baseline_my_location_24"
@@ -334,6 +336,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
+                android:inputType="textPersonName"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_border"
                 android:drawableLeft="@drawable/ic_baseline_my_location_24"
@@ -382,6 +385,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/struc_components"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -420,15 +424,6 @@
                 />
             </RadioGroup>
 
-            <EditText
-                android:id="@+id/structural_system_other"
-                android:layout_width="255dp"
-                android:layout_height="47dp"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Other.."
-                android:inputType="textPersonName"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -466,6 +461,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/struc_system"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -503,16 +499,6 @@
                     android:textColor="#FFFFFF"
                     />
             </RadioGroup>
-
-            <EditText
-                android:id="@+id/floor_other"
-                android:layout_width="255dp"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/white"
-                android:layout_height="47dp"
-                android:textColorHint="@color/white"
-                android:hint="Other.."
-                android:inputType="textPersonName"/>
 
 
             <TextView
@@ -574,6 +560,38 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/textView291"
+                android:layout_width="118dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:text="Occupancy"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/select_occupancy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/edit_text_border"
+                android:drawableLeft="@drawable/ic_baseline_apartment_24"
+                android:drawablePadding="20dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:hint="Select Occupancy"
+                android:inputType="none"
+                android:cursorVisible="false"
+                android:focusable="false"
+                />
+
+            <TextView
                 android:id="@+id/textView24"
                 android:layout_width="118dp"
                 android:layout_height="25dp"
@@ -581,7 +599,6 @@
                 android:fontFamily="@font/lato_bold"
                 android:textColor="#FFFFFF"
                 android:layout_marginLeft="20dp"
-                android:text="Residential"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -599,215 +616,214 @@
                 android:paddingRight="12dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
-                android:hint="Select Residential"
                 android:inputType="none"
                 android:cursorVisible="false"
                 android:focusable="false"
                 />
 
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Educational"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView25"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Educational"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/educational"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_school_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Educational"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/educational"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_school_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select Educational"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Lifeline"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView26"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Lifeline"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/lifeline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_local_hospital_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select LifeLine"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/lifeline"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_local_hospital_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select LifeLine"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Commercial"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView27"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Commercial"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/commercial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_add_home_work_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Commercial"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/commercial"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_add_home_work_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select Commercial"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Office"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView28"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Office"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/office"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_add_business_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Office"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/office"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_add_business_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select Office"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Mixed Use"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView29"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Mixed Use"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/mixed_use"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_add_home_work_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Mixed Use"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/mixed_use"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_add_home_work_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select Mixed Use"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Industrial"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView30"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Industrial"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/industrial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_border"
-                android:drawableLeft="@drawable/ic_baseline_business_center_24"
-                android:drawablePadding="20dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Industrial"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:focusable="false"
-                />
+<!--            <EditText-->
+<!--                android:id="@+id/industrial"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:drawableLeft="@drawable/ic_baseline_business_center_24"-->
+<!--                android:drawablePadding="20dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="12dp"-->
+<!--                android:hint="Select Industrial"-->
+<!--                android:inputType="none"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="118dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lato_bold"
-                android:textColor="#FFFFFF"
-                android:text="Other"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView31"-->
+<!--                android:layout_width="118dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="Other"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold" />-->
 
             <EditText
                 android:id="@+id/other"
@@ -822,9 +838,9 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="12dp"
                 android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:hint="Select Other"
-                />
+                android:paddingBottom="12dp"/>
+
+<!--                />-->
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
