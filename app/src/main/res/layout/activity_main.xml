@@ -1160,6 +1160,17 @@ frame members, and has no damage in columns."
             android:text="SUBMIT"
             android:layout_gravity="center" />
 
+        <Button
+            android:id="@+id/viewfile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="#FFEB3B"
+            android:drawableLeft="@drawable/ic_baseline_file_open_24"
+            android:text="Open File"
+            android:layout_gravity="center" />
+
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

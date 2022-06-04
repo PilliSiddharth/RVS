@@ -5,15 +5,18 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -69,6 +72,7 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
     String mFilename;
 
     HashMap map;
+    Button view_file;
 
     String struc_system_value;
     String struc_components_value;
@@ -80,7 +84,9 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
     EditText datepicker, inspector_id, chooseTime, building_name, address1, address2, city_town, latitude, longitude;
     AlertDialog.Builder residential_builder, educational_builder, lifeline_builder, commercial_builder, office_builder, mixed_builder, industrial_builder;
     //    roof
-    ArrayList<String> occupancy_text_value = new ArrayList<>();
+    String occupancy_value;
+    String occupancy_text_value;
+//    ArrayList<String> occupancy_text_value = new ArrayList<>();
     EditText roof, residential, educational, lifeline, commercial, office, mixeduse, industrial, other, occupancy;
 
     RadioGroup struc_system;
@@ -204,6 +210,9 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
         structral_system_textview = findViewById(R.id.textView17);
         structral_components_textview = findViewById(R.id.textView18);
 
+        view_file = findViewById(R.id.viewfile_btn);
+        view_file.setVisibility(View.GONE);
+
         ScrollView scrollview = findViewById(R.id.scrollview);
 
 
@@ -324,8 +333,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             residential.setText(residential_array[residential_ans]);
-                                            occupancy_text_value.add("Residential");
-                                            occupancy_text_value.add(residential_array[residential_ans]);
+                                            occupancy_value = "Residential";
+                                            occupancy_text_value = residential_array[residential_ans];
                                         }
                                     });
 
@@ -372,8 +381,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             educational.setText(educational_array[educational_ans]);
-                                            occupancy_text_value.add("Educational");
-                                            occupancy_text_value.add(educational_array[educational_ans]);
+                                            occupancy_value = "Educational";
+                                            occupancy_text_value = educational_array[educational_ans];
                                         }
                                     });
 
@@ -423,8 +432,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             lifeline.setText(lifeline_array[lifeline_ans]);
-                                            occupancy_text_value.add("Lifeline");
-                                            occupancy_text_value.add(lifeline_array[lifeline_ans]);
+                                            occupancy_value = "Lifeline";
+                                            occupancy_text_value = lifeline_array[lifeline_ans];
                                         }
                                     });
 
@@ -474,8 +483,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             commercial.setText(commercial_array[commercial_ans]);
-                                            occupancy_text_value.add("Commercial");
-                                            occupancy_text_value.add(commercial_array[commercial_ans]);
+                                            occupancy_value = "Commercial";
+                                            occupancy_text_value= commercial_array[commercial_ans];
                                         }
                                     });
 
@@ -524,8 +533,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             office.setText(office_array[office_ans]);
-                                            occupancy_text_value.add("Office");
-                                            occupancy_text_value.add(office_array[office_ans]);
+                                            occupancy_value = "Office";
+                                            occupancy_text_value = office_array[office_ans];
                                         }
                                     });
 
@@ -575,8 +584,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             mixeduse.setText(mixed_array[mixed_ans]);
-                                            occupancy_text_value.add("Mixed Use");
-                                            occupancy_text_value.add(mixed_array[mixed_ans]);
+                                            occupancy_value = "Mixed Use";
+                                            occupancy_text_value = mixed_array[mixed_ans];
                                         }
                                     });
 
@@ -623,8 +632,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             industrial.setText(industrial_array[industrial_ans]);
-                                            occupancy_text_value.add("Industrial");
-                                            occupancy_text_value.add(industrial_array[industrial_ans]);
+                                            occupancy_value = "Industrial";
+                                            occupancy_text_value = industrial_array[industrial_ans];
                                         }
                                     });
 
@@ -648,8 +657,8 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                             occupancy_selection.setText("Enter the Other Occupancy");
                             other.setVisibility(View.VISIBLE);
                             other.setHint("Enter Occupancy");
-                            occupancy_text_value.add("Other");
-                            occupancy_text_value.add(other.getText().toString());
+                            occupancy_value = "Other";
+                            occupancy_text_value = other.getText().toString();
                         }
                     }
 
@@ -848,14 +857,15 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                 }
                 yellow_arr.clear();
                 red_arr.clear();
-                residential_data.clear();
-                educational_data.clear();
-                lifeline_data.clear();
-                commercial_data.clear();
-                office_data.clear();
-                mixed_data.clear();
-                industrial_data.clear();
-                occupancy_text_value.clear();
+//                residential_data.clear();
+//                educational_data.clear();
+//                lifeline_data.clear();
+//                commercial_data.clear();
+                roof_data.clear();
+//                office_data.clear();
+//                mixed_data.clear();
+//                industrial_data.clear();
+//                occupancy_text_value.clear();
 //                map.clear();
             }
         });
@@ -986,7 +996,7 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
         if (occupancy.getText().length() == 0) {
             occupancy.setError("This field is required");
             return false;
-        }else if(occupancy_text_value.isEmpty()){
+        }else if(residential.getText().length() > 2 && educational.getText().length() > 2 && lifeline.getText().length() > 2 && commercial.getText().length() > 2 && office.getText().length() > 2 && mixeduse.getText().length() > 2 && industrial.getText().length() > 2 && other.getText().length() > 2){
             occupancy.setError(null);
             residential.setError("This field is required");
             educational.setError("This field is required");
@@ -1564,7 +1574,7 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
             doc.add(new Paragraph("\n"));
 
             com.itextpdf.text.List occupance_type_table_list = new com.itextpdf.text.List();
-            occupance_type_table_list.add(occupancy_text_value.get(0));
+            occupance_type_table_list.add(occupancy_value);
             Phrase occupance_type_phrase = new Phrase();
             occupance_type_phrase.add(occupance_type_table_list);
             PdfPCell occupance_type_phraseCell = new PdfPCell();
@@ -1590,7 +1600,7 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
 
 
             com.itextpdf.text.List occupance_user_table_list = new com.itextpdf.text.List();
-            occupance_user_table_list.add(occupancy_text_value.get(1));
+            occupance_user_table_list.add(occupancy_text_value);
             Phrase occupance_user_phrase = new Phrase();
             occupance_user_phrase.add(occupance_user_table_list);
             PdfPCell occupance_user_phraseCell = new PdfPCell();
@@ -1598,7 +1608,7 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
 
             PdfPTable occupance_user_phraseTable = new PdfPTable(2);
             occupance_user_phraseTable.setSpacingBefore(5);
-            occupance_user_phraseTable.addCell(occupancy_text_value.get(0)+": ");
+            occupance_user_phraseTable.addCell(occupancy_value+": ");
             occupance_user_phraseTable.addCell(occupance_user_phraseCell);
 
             Phrase occupance_user_phraseTableWrapper = new Phrase();
@@ -1784,6 +1794,18 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
             doc.close();
 
             Toast.makeText(this, mFilename + ".pdf\nis saved to\n" + mFilePath, Toast.LENGTH_SHORT).show();
+            view_file.setVisibility(View.VISIBLE);
+            view_file.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent viewPdf = new Intent(Intent.ACTION_VIEW);
+                    viewPdf.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Uri URI = FileProvider.getUriForFile(MainActivity.this, MainActivity.this.getApplicationContext().getPackageName() + ".provider", myFile);
+                    viewPdf.setDataAndType(URI, "application/pdf");
+                    viewPdf.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    MainActivity.this.startActivity(viewPdf);
+                }
+            });
 
 
         } catch (Exception e) {
