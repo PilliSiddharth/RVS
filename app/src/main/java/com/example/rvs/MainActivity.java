@@ -10,16 +10,19 @@ import androidx.core.content.FileProvider;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,10 +56,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -71,8 +76,15 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
     File pdfFolder;
     String mFilename;
 
+    String leftview_photopath;
+    String rightview_photopath;
+    String rearview_photopath;
+    String frontview_photopath;
+
     HashMap map;
     Button view_file;
+
+    Button leftview_capture, rightview_capture, frontview_capture, rearview_capture;
 
     String struc_system_value;
     String struc_components_value;
@@ -167,6 +179,12 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
         inspector_id = findViewById(R.id.inspector_id);
         datepicker = findViewById(R.id.datepicker);
         chooseTime = findViewById(R.id.timepicker);
+
+        leftview_capture = findViewById(R.id.leftview_capture_btn);
+        rightview_capture = findViewById(R.id.rightview_capture_btn);
+        frontview_capture = findViewById(R.id.frontview_capture_btn);
+        rearview_capture = findViewById(R.id.rearview_capture_btn);
+
         roof = findViewById(R.id.roof);
         occupancy = findViewById(R.id.select_occupancy);
 
@@ -246,6 +264,107 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
                     }
                 }, 0, 0, false);
                 timePickerDialog.show();
+            }
+        });
+
+        leftview_capture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    // Ensure that there's a camera activity to handle the intent
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        // Create the File where the photo should go
+                        File photoFile = null;
+                        try {
+                            photoFile = createLeftImageFile();
+                        } catch (IOException ex) {
+                            // Error occurred while creating the File
+
+                        }
+                        // Continue only if the File was successfully created
+//                        if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+                                "com.example.rvs.provider",
+                                photoFile);
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(takePictureIntent, 1);
+//                        }
+                    }
+                }
+            });
+        rightview_capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Ensure that there's a camera activity to handle the intent
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createRightImageFile();
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+
+                    }
+                    // Continue only if the File was successfully created
+//                        if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+                            "com.example.rvs.provider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, 1);
+//                        }
+                }
+            }
+        });
+        frontview_capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Ensure that there's a camera activity to handle the intent
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createFrontImageFile();
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+
+                    }
+                    // Continue only if the File was successfully created
+//                        if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+                            "com.example.rvs.provider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, 1);
+//                        }
+                }
+            }
+        });
+        rearview_capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Ensure that there's a camera activity to handle the intent
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createRearImageFile();
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+
+                    }
+                    // Continue only if the File was successfully created
+//                        if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+                            "com.example.rvs.provider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, 1);
+//                        }
+                }
             }
         });
 
@@ -1022,6 +1141,67 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
         }
     }
 
+    private File createLeftImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "LEFTVIEW_JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir);
+
+        leftview_photopath = "file:" + image.getAbsolutePath();
+        return image;/* directory */
+    }
+
+    private File createRightImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "RIGHTVIEW_JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir);
+
+        rightview_photopath = "file:" + image.getAbsolutePath();
+        return image;/* directory */
+    }
+
+    private File createFrontImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "FRONTVIEW_JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir);
+
+        frontview_photopath = "file:" + image.getAbsolutePath();
+        return image;/* directory */
+    }
+
+    private File createRearImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "REARVIEW_JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir);
+
+        rearview_photopath = "file:" + image.getAbsolutePath();
+        return image;/* directory */
+    }
+
+
     private void savePdf() throws FileNotFoundException, DocumentException {
 
         pdfFolder = new File(Environment.getExternalStoragePublicDirectory(
@@ -1159,6 +1339,72 @@ public class MainActivity<TimeActivity> extends AppCompatActivity {
 
             doc.add(building_info);
             doc.add(new Paragraph("\n"));
+
+
+//            PdfPTable pictures = new PdfPTable(2);
+////            float pic_widths[] = {, 20};
+////            address_info.setWidths(widths3);
+//            pictures.setHeaderRows(1);
+//
+//
+//            cell = new PdfPCell(new Phrase("Left View of the Structure"));
+//            cell.setBackgroundColor(new BaseColor(0, 173, 239));
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell(new Phrase("Right View of the Structure"));
+//            cell.setBackgroundColor(new BaseColor(0, 173, 239));
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell(new Phrase("Front View of the Structure"));
+//            cell.setBackgroundColor(new BaseColor(0, 173, 239));
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell(new Phrase("Rear View of the Structure"));
+//            cell.setBackgroundColor(new BaseColor(0, 173, 239));
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell();
+//            File leftimgFile = new  File(leftview_photopath);
+//            Bitmap leftbmp = BitmapFactory.decodeFile(leftimgFile.getAbsolutePath());
+//            ByteArrayOutputStream leftstream = new ByteArrayOutputStream();
+//            leftbmp.compress(Bitmap.CompressFormat.PNG, 100, leftstream);
+//            Image leftimage = Image.getInstance(leftstream.toByteArray());
+////            ph = new Phrase(image);
+//            cell.addElement(leftimage);
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell();
+//            File rightimgFile = new  File(rightview_photopath);
+//            Bitmap rightbmp = BitmapFactory.decodeFile(rightimgFile.getAbsolutePath());
+//            ByteArrayOutputStream rightstream = new ByteArrayOutputStream();
+//            rightbmp.compress(Bitmap.CompressFormat.PNG, 100, rightstream);
+//            Image rightimage = Image.getInstance(rightstream.toByteArray());
+////            ph = new Phrrearimage);
+//            cell.addElement(rightimage);
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell();
+//            File frontimgFile = new  File(frontview_photopath);
+//            Bitmap frontbmp = BitmapFactory.decodeFile(frontimgFile.getAbsolutePath());
+//            ByteArrayOutputStream frontstream = new ByteArrayOutputStream();
+//            frontbmp.compress(Bitmap.CompressFormat.PNG, 100, frontstream);
+//            Image frontimage = Image.getInstance(frontstream.toByteArray());
+////            ph = new Phrase(image);
+//            cell.addElement(frontimage);
+//            pictures.addCell(cell);
+//
+//            cell = new PdfPCell();
+//            File rearimgFile = new  File(rearview_photopath);
+//            Bitmap rearbmp = BitmapFactory.decodeFile(rearimgFile.getAbsolutePath());
+//            ByteArrayOutputStream rearstream = new ByteArrayOutputStream();
+//            rearbmp.compress(Bitmap.CompressFormat.PNG, 100, rearstream);
+//            Image rearimage = Image.getInstance(rearstream.toByteArray());
+////            ph = new Phrase(image);
+//            cell.addElement(rearimage);
+//            pictures.addCell(cell);
+//
+//            doc.add(pictures);
+//            doc.add(new Paragraph("\n"));
 
 
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1077139705211",
+    "project_id": "rvs-data",
+    "storage_bucket": "rvs-data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077139705211:android:cef081bda358d309ee81de",
+        "android_client_info": {
+          "package_name": "com.example.rvs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077139705211-ekm4udt1ubi1p1hjsi3rp97tfj7mghqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVuxtM9oe5wyCCEwGM4Nw8RsuQm-k1W9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077139705211-ekm4udt1ubi1p1hjsi3rp97tfj7mghqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
