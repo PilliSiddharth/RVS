@@ -145,6 +145,102 @@
                 android:cursorVisible="false"
                 android:focusable="false"
                 />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="200dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:text="Left View of the Structure"
+                android:textAlignment="inherit"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/leftview_capture_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:backgroundTint="#FFEB3B"
+                android:drawableLeft="@drawable/ic_baseline_camera_alt_24"
+                android:text="Capture Image"
+                />
+
+            <TextView
+                android:id="@+id/textView992"
+                android:layout_width="200dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:text="Right View of the Structure"
+                android:textAlignment="inherit"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/rightview_capture_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:backgroundTint="#FFEB3B"
+                android:drawableLeft="@drawable/ic_baseline_camera_alt_24"
+                android:text="Capture Image"
+                />
+
+            <TextView
+                android:id="@+id/textView93"
+                android:layout_width="200dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:text="Front View of the Structure"
+                android:textAlignment="inherit"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/frontview_capture_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:backgroundTint="#FFEB3B"
+                android:drawableLeft="@drawable/ic_baseline_camera_alt_24"
+                android:text="Capture Image"
+                />
+
+            <TextView
+                android:id="@+id/textView94"
+                android:layout_width="200dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:text="Rear View of the Structure"
+                android:textAlignment="inherit"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/rearview_capture_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:backgroundTint="#FFEB3B"
+                android:drawableLeft="@drawable/ic_baseline_camera_alt_24"
+                android:text="Capture Image"
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
